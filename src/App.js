@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import ToggleSwicth from "./components/ToggleSwicth";
+import Monthly from "./components/Monthly";
+import Years from "./components/Years";
+import "./App.scss";
 function App() {
+  const [toggle, settoggle] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <h1 className="judul">Harga Paket Hosting</h1>
+      <div className="container_toggle">
+        <h4>Bulanan</h4>
+        <label
+          onClick={e => {
+            e.preventDefault();
+            settoggle(!toggle);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <ToggleSwicth />
+        </label>
+        <h4>Tahunan</h4>
+      </div>
+      {toggle && <Years />}
+      {!toggle && <Monthly />}
     </div>
   );
 }
